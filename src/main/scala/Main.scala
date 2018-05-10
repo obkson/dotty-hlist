@@ -1,20 +1,28 @@
-import hlist._, Field._, Selector._
+import dotty.records._, hlist._, hlist.ops._
 
 object Main {
 
   def main(args: Array[String]): Unit = {
 
-    val l = "foo"->>42 :*: "bar" ->> "baz" :*: HNil
+    val l = ("name"->>"Morty") :*: ("age"->>14) :*: HNil()
 
     println(l)
 
-    val s = implicitly[Selector["bar",HCons[Field["foo",Int], HCons[Field["bar", String],HNil]]]]
+    val s = implicitly[Selector["age", HCons[Field["name",String], HCons[Field["age", Int],HNil]]]]
     val v = s.get(l)
     println(v)
 
-    val v1: Int = l.get["foo"] + 1
-    val v2: String = l.get["bar"]
-    println(v1)
-    println(v2)
+    val a: Int = l.get["age"]
+    val n: String = l.get["name"]
+
+    println(a)
+    println(n)
+
+    val r = l.toRecord
+
+    println(r)
+    println(r.name)
+    println(r.age)
+
   }
 }

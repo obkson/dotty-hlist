@@ -1,17 +1,2 @@
-### SBT ###
-target/
-project/plugins/project/
-.cache
-
-### Scala ###
-*.class
-*.log
-
-### VIM ###
-tags
-.*.swp
-.*.swo
-
-### OS X ###
-.DS_Store
-
+/target
+/repo
